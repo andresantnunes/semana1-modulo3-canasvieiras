@@ -17,10 +17,15 @@ public class ProdutoService {
     }
 
     public List<Produto> encontraProduto() {
+        //codigo a mais
+        System.out.println("Encontra Produto");
         return repository.findAll();
     }
 
+    // nome = aa, valor = 10.0
     public Produto salvarProduto(ProdutoRequest request) {
+
+        //resitory.save retorna Produto com o nome=nome e com valor=10.0
         return repository.save(
                 new Produto(request.getNome(), request.getValor()));
     }
