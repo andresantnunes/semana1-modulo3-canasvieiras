@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -52,7 +53,10 @@ public class ProdutoServiceTest {
     void salvarProduto() {
         Produto produto = new Produto("nome",10.0);
 
+        // Funções com parametro tem que receber os genéricos: any(), anyString, anyLong(), etc
         when(repository.save(any())).thenReturn(produto);
+        // exemplo de um findById
+//        when(repository.findById(anyLong())).thenReturn(Optional.of(produto));
 
         Produto resultado = produtoService.salvarProduto(
                 new ProdutoRequest("aa",10.0));
