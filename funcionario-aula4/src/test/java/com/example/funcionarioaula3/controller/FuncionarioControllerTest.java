@@ -3,6 +3,7 @@ package com.example.funcionarioaula3.controller;
 import com.example.funcionarioaula3.model.Funcionario;
 import com.example.funcionarioaula3.repository.FuncionarioRepository;
 import com.example.funcionarioaula3.service.FuncionarioService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,6 +39,11 @@ class FuncionarioControllerTest {
     @Autowired
     MockMvc mockMvc; // Age como uma chamada externa para o nosso programa
 
+//    @BeforeEach // é executado antes de Cada método com o @Test
+//    public void antesDeCada(){
+//
+//    }
+
     @Test
     void retornarTodosFuncionarios() throws Exception {
         List<Funcionario> funcionarios = List.of(new Funcionario(1L,"Marco Aurelio",2000.0,2L));
@@ -68,11 +74,12 @@ class FuncionarioControllerTest {
                                 .content(
                                         """
                                         {
-                                        \t"nomeFuncionario":"Andre",
-                                        \t"salario":1001.0,
-                                        \t"tempoEmpresa":1
+                                            "nomeFuncionario":"Andre",
+                                            "salario":1001.0,
+                                            "tempoEmpresa":1
                                         }
-                                        """)
+                                        """
+                                )
                 )
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.content().json(
